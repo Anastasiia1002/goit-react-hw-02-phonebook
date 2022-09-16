@@ -39,7 +39,6 @@ class ContactForm extends React.Component {
 
     this.props.onSubmitForm(this.state);
     this.reset();
-    console.log(this.state);
   };
 
   reset = () => {
@@ -85,10 +84,6 @@ class ContactForm extends React.Component {
   }
 }
 ContactForm.propTypes = {
-  number: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired,
+  onSubmitForm: PropTypes.func.isRequired,
 };
 export default ContactForm;

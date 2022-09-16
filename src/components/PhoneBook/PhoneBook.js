@@ -1,6 +1,6 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
@@ -30,29 +30,29 @@ class PhoneBook extends React.Component {
       this.setState(prevState => ({
         contacts: [...prevState.contacts, contact],
       }));
-      console.log(contact);
     }
   };
 
   handleFilterChange = event => {
-    const { name, value } = event.currentTarget;
     this.setState({
-      [name]: value,
+      filter: event.currentTarget.value,
     });
   };
 
   filterContacts = () => {
-    let filterContact = [];
+    // let filterContact = [];
+
     if (this.state.filter) {
-      filterContact = this.state.contacts.filter(
+      const filterLow = this.state.filter.toLowerCase();
+      return this.state.contacts.filter(
         contact =>
-          contact.name.includes(this.state.filter) ||
-          contact.name.toLowerCase().includes(this.state.filter)
+          contact.name.includes(filterLow) ||
+          contact.name.toLowerCase().includes(filterLow)
       );
-    } else {
-      return this.state.contacts;
     }
-    return filterContact;
+    return this.state.contacts;
+
+    // return filterContact;
   };
 
   delContact = id => {
@@ -77,12 +77,10 @@ class PhoneBook extends React.Component {
     );
   }
 }
-PhoneBook.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  filter: PropTypes.string.isRequired,
-  formSubmitHandler: PropTypes.func.isRequired,
-  delContact: PropTypes.func.isRequired,
-  filterContacts: PropTypes.func.isRequired,
-  handleFilterChange: PropTypes.func.isRequired,
-};
+// PhoneBook.propTypes = {
+//   formSubmitHandler: PropTypes.func.isRequired,
+//   delContact: PropTypes.func.isRequired,
+//   filterContacts: PropTypes.func.isRequired,
+//   handleFilterChange: PropTypes.func.isRequired,
+// };
 export default PhoneBook;
